@@ -1,4 +1,4 @@
-package com.android.noahkim_androidchallenge;
+package com.noahkim.androidchallenge;
 
 import org.junit.Test;
 

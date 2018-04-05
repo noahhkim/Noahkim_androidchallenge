@@ -1,8 +1,9 @@
-package com.android.noahkim_androidchallenge;
+package com.noahkim.androidchallenge;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
+
+import com.noahkim.androidchallenge.data.Item;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,56 +15,48 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import timber.log.Timber;
 
-public class FetchUserData extends AsyncTask<String, Void, List<User>> {
+public class FetchUserData extends AsyncTask<String, Void, List<Item>> {
 
     public FetchUserData() {
     }
-    private static List<User> getDataFromJson(String jsonResponse) throws JSONException, ParseException {
-
-        final String ARRAY_ITEMS = "items";
-        final String USERNAME = "display_name";
-        final String GRAVATAR = "profile_image";
+    private static List<Item> getDataFromJson(String jsonResponse) {
 
         // Create an empty ArrayList that we can start adding users to
-        List<User> users = new ArrayList<>();
+        List<Item> users = new ArrayList<>();
 
         // Parse JSON response string
         try {
             JSONObject baseJsonResponse = new JSONObject(jsonResponse);
-            JSONArray jsonArray = baseJsonResponse.getJSONArray(ARRAY_ITEMS);
+            JSONArray jsonArray = baseJsonResponse.getJSONArray("items");
 
             // For each user in the array, create a user object
             for (int i = 0; i < jsonArray.length(); i++) {
 
-                // Get a single user at position i within the list of movies
-                JSONObject user = jsonArray.getJSONObject(i);
+                // Get a single user at position i within the list
+                JSONObject object = jsonArray.getJSONObject(i);
 
-                String username = user.getString(USERNAME);
-                String gravatar = user.getString(GRAVATAR);
+                String username = object.getString("display_name");
+                String gravatar = object.getString("profile_image");
 
-                // Create a new Review object and add it to the list of users
-                User review = new User(username, gravatar);
-                users.add(review);
+                // Create a new user object and add it to the list of users
+//                Item user = new Item();
+//                users.add(user);
             }
-            Timber.d("FetchUserData Complete");
-
         } catch (JSONException e) {
-            Timber.e("Problem parsing the users JSON results", e);
             e.printStackTrace();
         }
         return users;
     }
     @Override
-    protected List<User> doInBackground(String... params) {
+    protected List<Item> doInBackground(String... params) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        List<User> users = null;
+        List<Item> users = null;
         String jsonString;
 
         Uri uri = new Uri.Builder()
@@ -95,12 +88,11 @@ public class FetchUserData extends AsyncTask<String, Void, List<User>> {
             if (buffer.length() == 0) {
                 return null;
             }
-
             // Get response as a string and extract data from JSON
             jsonString = buffer.toString();
             users = getDataFromJson(jsonString);
 
-        } catch (IOException | ParseException | JSONException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             if (urlConnection != null) {
@@ -118,7 +110,7 @@ public class FetchUserData extends AsyncTask<String, Void, List<User>> {
     }
 
     @Override
-    protected void onPostExecute(List<User> users) {
+    protected void onPostExecute(List<Item> users) {
 
         super.onPostExecute(users);
     }

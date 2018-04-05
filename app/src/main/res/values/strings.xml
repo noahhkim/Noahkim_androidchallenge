@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Noahkim-androidchallenge</string>
+    <string name="app_name">androidchallenge</string>
+
+    <!-- Test strings -->
+    <string name="test_username">John Smith</string>
+
 </resources>
