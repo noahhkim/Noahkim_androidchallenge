@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">androidchallenge</string>
 
+    <!-- Content descriptions -->
+    <string name="profile_image">Profile image</string>
+
     <!-- Test strings -->
     <string name="test_username">John Smith</string>
 

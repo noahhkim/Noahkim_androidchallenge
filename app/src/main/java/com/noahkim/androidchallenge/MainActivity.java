@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.noahkim.androidchallenge.data.BadgeCounts;
 import com.noahkim.androidchallenge.data.Item;
 import com.noahkim.androidchallenge.data.User;
 
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.users_recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<User> mUserList = new ArrayList<>();
-    private List<Item> mItemList = new ArrayList<>();
-    private UserAdapter mUserAdapter;
+    private List<User> userList = new ArrayList<>();
+    private List<BadgeCounts> badgeCountsList = new ArrayList<>();
+    private UserAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +37,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Timber.plant(new Timber.DebugTree());
 
-        mUserAdapter = new UserAdapter(this, mUserList);
+        userAdapter = new UserAdapter(this, userList, badgeCountsList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mUserAdapter);
+//        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecorator(ContextCompat.getDrawable(this, R.drawable.divider));
+//        mRecyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.setAdapter(userAdapter);
     }
 
     @Override
     protected void onStart() {
-//        FetchUserData fetchUserData = new FetchUserData();
-//        fetchUserData.execute();
         getUserData();
         super.onStart();
     }
@@ -63,11 +64,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<Item> call, @NonNull Response<Item> response) {
                 Item item = response.body();
                 if (item != null) {
-                    mUserList.clear();
-                    mUserList.addAll(item.getUsers());
-                    mUserAdapter.notifyDataSetChanged();
+                    userList.clear();
+                    userList.addAll(item.getUsers());
+                    userAdapter.notifyDataSetChanged();
+                    for (User user : userList) {
+                        badgeCountsList.add(user.getBadgeCounts());
+                    }
                 }
-                Timber.d("size: " + mUserList.size());
+                Timber.d("size: " + userList.size());
+                Timber.d("badges: " + badgeCountsList.size());
             }
 
             @Override

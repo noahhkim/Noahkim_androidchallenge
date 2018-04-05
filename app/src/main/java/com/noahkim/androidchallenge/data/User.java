@@ -14,12 +14,12 @@ public class User {
 
     @SerializedName("profile_image")
     @Expose
-    private String gravatar;
+    private String profileImage;
 
-    public User(BadgeCounts badgeCounts, String username, String gravatar) {
+    public User(BadgeCounts badgeCounts, String username, String profileImage) {
         this.badgeCounts = badgeCounts;
         this.username = username;
-        this.gravatar = gravatar;
+        this.profileImage = profileImage;
     }
 
     public BadgeCounts getBadgeCounts() {
@@ -29,7 +29,7 @@ public class User {
         return username;
     }
 
-    public String getGravatar() {
-        return gravatar;
+    public String getProfileImage() {
+        return profileImage;
     }
 }
