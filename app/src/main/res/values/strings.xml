@@ -1,10 +1,24 @@
 <resources>
-    <string name="app_name">androidchallenge</string>
+    <string name="app_name">Stack Users</string>
 
     <!-- Content descriptions -->
     <string name="profile_image">Profile image</string>
+    <string name="network_error">Network error</string>
 
     <!-- Test strings -->
     <string name="test_username">John Smith</string>
+    <string name="unknown_location">Unknown Location</string>
+
+    <!-- Alert dialog strings -->
+    <string name="alert_message">Would you like to enable it?</string>
+    <string name="alert_title">No Internet Connection</string>
+    <string name="positive_button"> Enable Internet </string>
+    <string name="negative_button"> Cancel </string>
+
+    <!-- Url strings -->
+    <string name="base_url">https://api.stackexchange.com</string>
+
+    <!-- Error strings -->
+    <string name="server_error">Server Error</string>
 
 </resources>
