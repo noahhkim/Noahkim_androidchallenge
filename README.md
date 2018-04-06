@@ -1,6 +1,6 @@
 # Stack Users
 
-A list display of stack users and their information, with data retrieved from [Stackoverflow Users API Endpoint](https://api.stackexchange.com/2.2/users?site=stackoverflow)
+A display list of stack users and their badges, with data retrieved from [Stackoverflow Users API Endpoint](https://api.stackexchange.com/2.2/users?site=stackoverflow)
 
 ## Third-Party Libraries
 
@@ -23,3 +23,8 @@ For loading images, this is usually my go-to library. With just a few lines of c
 ### CircleImageView
 
 For displaying circular imageviews for the gravatars
+
+## Notes
+
+I had a lot of fun working on this assignment! I originally had a field to display user location but decided to remove it for the sake of simplicity. Thank you for letting me try this out and I'd greatly appreciate any feedback or suggestions for improvement :)
+
