@@ -30,7 +30,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context context;
     private List<BadgeCounts> badgeCountsList;
 
-    public UserAdapter(Context context, List<User> users, List<BadgeCounts> badgeCountsList) {
+    UserAdapter(Context context, List<User> users, List<BadgeCounts> badgeCountsList) {
         this.context = context;
         this.users = users;
         this.badgeCountsList = badgeCountsList;
@@ -48,15 +48,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = users.get(position);
         BadgeCounts badgeCounts = badgeCountsList.get(position);
 
-        // Set display fields like profile image, username, location and badges
+        // Set display field for username
         holder.usernameText.setText(user.getUsername());
 
-        if (user.getLocation() != null) {
-            holder.locationText.setText(user.getLocation());
-        } else {
-            holder.locationText.setText(context.getString(R.string.unknown_location));
-        }
-
+        // Set display field for profile image
         GlideApp.with(context)
                 .load(user.getProfileImage())
                 .error(R.drawable.ic_account_circle)
@@ -76,6 +71,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(holder.profileImage);
 
+        // Set display fields for badges
         holder.goldText.setText(String.valueOf(badgeCounts.getGold()));
         holder.silverText.setText(String.valueOf(badgeCounts.getSilver()));
         holder.bronzeText.setText(String.valueOf(badgeCounts.getBronze()));
@@ -98,12 +94,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         TextView silverText;
         @BindView(R.id.bronze_text)
         TextView bronzeText;
-        @BindView(R.id.location_text)
-        TextView locationText;
+//        @BindView(R.id.location_text)
+//        TextView locationText;
         @BindView(R.id.progress)
         ProgressBar progressBar;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

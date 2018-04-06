@@ -30,7 +30,7 @@ public class User implements Parcelable {
         this.location = location;
     }
 
-    protected User(Parcel in) {
+    private User(Parcel in) {
         username = in.readString();
         profileImage = in.readString();
         location = in.readString();
@@ -51,16 +51,13 @@ public class User implements Parcelable {
     public BadgeCounts getBadgeCounts() {
         return badgeCounts;
     }
+
     public String getUsername() {
         return username;
     }
 
     public String getProfileImage() {
         return profileImage;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     @Override

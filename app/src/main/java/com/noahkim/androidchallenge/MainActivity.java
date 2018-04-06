@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         // Set linearlayout manager to recyclerview
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerView.ItemDecoration dividerItemDecoration = new DividerItemDecorator(
-                ContextCompat.getDrawable(this, R.drawable.divider));
-        recyclerView.addItemDecoration(dividerItemDecoration);
 
         // Set adapter to recyclerview
         recyclerView.setAdapter(userAdapter);
@@ -128,11 +124,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        // Save data for saved instance state
         outState.putParcelableArrayList(USERS_KEY, (ArrayList<? extends Parcelable>) userList);
         outState.putParcelableArrayList(BADGES_KEY, (ArrayList<? extends Parcelable>) badgeCountsList);
     }
 
-    // check network connectivity
+    // Check network connectivity
     public boolean isConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
@@ -151,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    // Show alert dialog if phone is not connected to Internet
     public void showInternetDisabledAlertDialog(final Context context) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context, R.style.Theme_AppCompat_Light_Dialog_Alert);

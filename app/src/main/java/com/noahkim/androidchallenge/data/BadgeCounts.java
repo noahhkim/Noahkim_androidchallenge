@@ -25,7 +25,7 @@ public class BadgeCounts implements Parcelable {
         this.gold = gold;
     }
 
-    protected BadgeCounts(Parcel in) {
+    private BadgeCounts(Parcel in) {
         if (in.readByte() == 0) {
             bronze = null;
         } else {
