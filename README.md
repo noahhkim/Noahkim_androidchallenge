@@ -18,7 +18,7 @@ For retrieving and uploading data on a background thread. I didn't have to write
 
 ### Glide
 
-For gravatars. This is my go-to library; with just a few lines, I'm able to download the images, cache them and display a loading progress bar while the images were being loaded.
+For gravatars. This is my go-to library; with just a few lines, I'm able to download the images, cache them and display a loading progress bar while the images are being loaded.
 
 ### CircleImageView
 
