@@ -1,4 +1,4 @@
-# androidchallenge
+# Stack Users
 
 A list display of stack users and their information, with data retrieved from [Stackoverflow Users API Endpoint](https://api.stackexchange.com/2.2/users?site=stackoverflow)
 
