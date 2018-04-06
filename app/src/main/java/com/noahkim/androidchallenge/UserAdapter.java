@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -68,7 +67,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                         return false;
                     }
                 })
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .into(holder.profileImage);
 
         // Set display fields for badges
@@ -94,8 +92,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         TextView silverText;
         @BindView(R.id.bronze_text)
         TextView bronzeText;
-//        @BindView(R.id.location_text)
-//        TextView locationText;
         @BindView(R.id.progress)
         ProgressBar progressBar;
 
